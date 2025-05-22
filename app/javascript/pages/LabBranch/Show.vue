@@ -12,12 +12,48 @@
 
       <LabBranch :lab_branch="lab_branch" />
 
+      <div class="flex justify-between items-center my-2">
+        <div class="flex justify-between items-center">
+          <Link :href="`/lab_branches/${lab_branch.id}/referrers/new`"
+            class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
+          New referrer
+          </Link>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <Link :href="`/lab_branches/${lab_branch.id}/procedures/new`"
+            class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
+          New procedure
+          </Link>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <Link :href="`/lab_branches/${lab_branch.id}/patients/new`"
+            class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
+          New patient
+          </Link>
+        </div>
+      </div>
+
       <div class="flex justify-between items-center">
-        <h1 class="font-bold text-4xl">Referrers</h1>
-        <Link :href="`/lab_branches/${lab_branch.id}/referrers/new`"
-          class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
-        New referrer
-        </Link>
+        <div class="flex justify-between items-center">
+          <Link :href="`/lab_branches/${lab_branch.id}/referrers`"
+            class="rounded-lg py-3 px-5 bg-slate-400 text-white block font-medium">
+          View Referrers
+          </Link>
+        </div>
+        <div class="flex justify-between items-center">
+          <Link :href="`/lab_branches/${lab_branch.id}/procedures`"
+            class="rounded-lg py-3 px-5 bg-slate-400 text-white block font-medium">
+          View Procedures
+          </Link>
+        </div>
+        <div class="flex justify-between items-center">
+          <Link :href="`/lab_branches/${lab_branch.id}/patients`"
+            class="rounded-lg py-3 px-5 bg-slate-400 text-white block font-medium">
+          View Patients
+          </Link>
+        </div>
       </div>
 
       <div class="min-w-full">
@@ -30,14 +66,6 @@
             </Link>
           </p>
         </template>
-
-        <div class="flex justify-between items-center">
-          <h1 class="font-bold text-4xl">Procedures</h1>
-          <Link :href="`/lab_branches/${lab_branch.id}/procedures/new`"
-            class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
-          New procedure
-          </Link>
-        </div>
 
         <div class="min-w-full">
           <template v-for="procedure in lab_branch.procedures" :key="procedure.id">
@@ -65,15 +93,14 @@
           Destroy this lab branch
           </Link>
         </div>
-
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { Head, Link } from '@inertiajs/vue3'
-import LabBranch from './LabBranch.vue'
+import { Head, Link } from "@inertiajs/vue3";
+import LabBranch from "./LabBranch.vue";
 
-const { lab_branch, flash } = defineProps(['lab_branch', 'flash'])
+const { lab_branch, flash } = defineProps(["lab_branch", "flash"]);
 </script>

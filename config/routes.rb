@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :lab_branches, shallow: true, only: [ :show ] do
     resources :referrers
     resources :procedures
+    resources :patients
   end
   resources :referrers
   resources :labs, shallow: true, only: [ :show ] do

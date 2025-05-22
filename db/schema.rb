@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_22_161402) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_22_184803) do
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "action", null: false
@@ -44,6 +44,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_22_161402) do
     t.string "trading_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "middle_names"
+    t.string "last_name"
+    t.date "dob"
+    t.text "address"
+    t.string "email"
+    t.string "phone"
+    t.integer "lab_branch_id", null: false
+    t.json "emergency_contact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lab_branch_id"], name: "index_patients_on_lab_branch_id"
   end
 
   create_table "procedures", force: :cascade do |t|
@@ -97,6 +112,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_22_161402) do
   add_foreign_key "events", "users"
   add_foreign_key "lab_branches", "labs"
   add_foreign_key "lab_users", "labs"
+  add_foreign_key "patients", "lab_branches"
   add_foreign_key "procedures", "lab_branches"
   add_foreign_key "referrers", "lab_branches"
   add_foreign_key "sessions", "users"
