@@ -1,0 +1,2 @@
+module LabBranchesHelper
+end

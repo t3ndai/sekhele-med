@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :lab_branches, only: [ :show ] do
+  end
   resources :labs, only: [ :show ] do
     resources :lab_users
   end
@@ -6,6 +8,13 @@ Rails.application.routes.draw do
     get "/", to: "home#index"
     resources :labs do
       resources :lab_users
+    end
+  end
+  namespace :lab_admin do
+    get "/", to: "home#index"
+    resources :labs do
+      resources :lab_users
+      resources :lab_branches
     end
   end
   get "inertia-example", to: "inertia_example#index"

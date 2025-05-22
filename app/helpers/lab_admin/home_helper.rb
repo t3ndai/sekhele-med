@@ -1,0 +1,2 @@
+module LabAdmin::HomeHelper
+end
