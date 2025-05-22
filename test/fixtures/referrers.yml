@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lab_branch: one
+  share_code: MyString
+  name: MyString
+  address: MyText
+  email: MyString
+  phone: MyString
+
+two:
+  lab_branch: two
+  share_code: MyString
+  name: MyString
+  address: MyText
+  email: MyString
+  phone: MyString

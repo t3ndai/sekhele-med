@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :lab_branches, only: [ :show ] do
+  resources :lab_branches, shallow: true, only: [ :show ] do
+    resources :referrers
   end
-  resources :labs, only: [ :show ] do
+  resources :referrers
+  resources :labs, shallow: true, only: [ :show ] do
     resources :lab_users
   end
   namespace :app_admin do
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
   end
   namespace :lab_admin do
     get "/", to: "home#index"
-    resources :labs do
+    resources :labs, shallow: true do
       resources :lab_users
       resources :lab_branches
     end

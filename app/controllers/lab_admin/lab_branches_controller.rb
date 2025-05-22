@@ -16,7 +16,7 @@ class LabAdmin::LabBranchesController < ApplicationController
 
   # GET /lab_branches/1
   def show
-    render inertia: "LabBranch/Show", props: {
+    render inertia: "LabBranch/ShowBranchLabAdmin", props: {
       lab_branch: serialize_lab_branch(@lab_branch)
     }
   end
