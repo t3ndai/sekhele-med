@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_22_130002) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_22_161402) do
   create_table "events", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "action", null: false
@@ -44,6 +44,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_22_130002) do
     t.string "trading_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "procedures", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.decimal "cost"
+    t.integer "lab_branch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lab_branch_id"], name: "index_procedures_on_lab_branch_id"
   end
 
   create_table "referrers", force: :cascade do |t|
@@ -87,6 +97,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_22_130002) do
   add_foreign_key "events", "users"
   add_foreign_key "lab_branches", "labs"
   add_foreign_key "lab_users", "labs"
+  add_foreign_key "procedures", "lab_branches"
   add_foreign_key "referrers", "lab_branches"
   add_foreign_key "sessions", "users"
   add_foreign_key "sign_in_tokens", "users"
