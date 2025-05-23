@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  procedure: one
+  lab_branch_user: one
+  procedure_on: 2025-05-23
+  procedure_at: 2025-05-23 17:47:12
+  patient_visit: one
+
+two:
+  procedure: two
+  lab_branch_user: two
+  procedure_on: 2025-05-23
+  procedure_at: 2025-05-23 17:47:12
+  patient_visit: two

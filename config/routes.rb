@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :patient_procedures
   resources :lab_branches, shallow: true, only: [ :show ] do
     resources :referrers
     resources :procedures
-    resources :patients
+    resources :patients do
+      resources :patient_visits
+    end
   end
   resources :referrers
   resources :labs, shallow: true, only: [ :show ] do
@@ -16,9 +19,8 @@ Rails.application.routes.draw do
   end
   namespace :lab_admin do
     get "/", to: "home#index"
-    resources :labs, shallow: true do
-      resources :lab_users
-      resources :lab_branches
+    resources :lab_branches, shallow: true do
+      resources :lab_branch_users
     end
   end
   get "inertia-example", to: "inertia_example#index"

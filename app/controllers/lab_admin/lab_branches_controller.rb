@@ -1,6 +1,6 @@
 class LabAdmin::LabBranchesController < ApplicationController
   before_action :set_lab_branch, only: %i[ show edit update destroy ]
-  before_action :set_lab, only: %i[ index new create update  ]
+  before_action :set_lab, only: %i[ new create update  ]
 
   inertia_share flash: -> { flash.to_hash }
 

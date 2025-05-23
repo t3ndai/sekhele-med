@@ -1,0 +1,2 @@
+module LabBranchUsersHelper
+end

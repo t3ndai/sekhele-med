@@ -1,5 +1,7 @@
 import { createInertiaApp } from '@inertiajs/vue3'
 import { createApp, h } from 'vue'
+import PrimeVue from 'primevue/config';
+import Aura from '@primeuix/themes/aura';
 
 createInertiaApp({
   // Set default page title
@@ -30,6 +32,12 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .use(PrimeVue, {
+        theme: {
+          preset: Aura,
+        },
+        ripple: true
+      })
       .mount(el)
   },
 })
