@@ -1,0 +1,2 @@
+module PatientProcedureResultsHelper
+end

@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  resources :patient_procedures
   resources :lab_branches, shallow: true, only: [ :show ] do
     resources :referrers
     resources :procedures
     resources :patients do
-      resources :patient_visits
+      resources :patient_visits do
+        resources :patient_procedures do
+          resources :patient_procedure_results
+        end
+      end
     end
   end
   resources :referrers

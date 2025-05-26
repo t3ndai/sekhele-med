@@ -68,7 +68,7 @@
 
     <div class="my-5">
       <label for="doc">Docs</label>
-      <input type="file" multiple name="doc[]" id="doc" @input="form.docs = Array.from($event.target.files)"
+      <input type="file" :multiple="true" name="doc[]" id="doc" @input="form.docs = $event.target.files"
         class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" />
       <div v-if="form.errors.docs" :class="$style.error">
         {{ form.errors.docs.join(', ') }}

@@ -2,11 +2,11 @@
   <div>
     <p class="my-5">
       <strong class="block font-medium mb-1">Procedure:</strong>
-      {{ patient_procedure.procedure_id }}
+      {{ procedure }}
     </p>
     <p class="my-5">
-      <strong class="block font-medium mb-1">Lab branch user:</strong>
-      {{ patient_procedure.lab_branch_user_id }}
+      <strong class="block font-medium mb-1">Assignee:</strong>
+      {{ assignee }}
     </p>
     <p class="my-5">
       <strong class="block font-medium mb-1">Procedure on:</strong>
@@ -24,5 +24,5 @@
 </template>
 
 <script setup>
-const { patient_procedure } = defineProps(['patient_procedure'])
+const { patient_procedure, assignee, procedure } = defineProps(['patient_procedure', 'assignee', 'procedure'])
 </script>

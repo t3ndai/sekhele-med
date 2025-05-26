@@ -8,5 +8,11 @@ class LabBranchUser < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, :last_names, :address, :phone, presence: true
 
+  def name
+    "#{first_name} #{last_names}"
+  end
+
+  scope :medical_staff, -> { where(role_type: :medical) }
+
   after_create ->(lab_branch_user) { lab_branch_user.create_user(email: email, password: SecureRandom.base58, verified: true, role: :user) }
 end

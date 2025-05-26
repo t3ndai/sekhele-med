@@ -65,8 +65,9 @@ class PatientVisitsController < ApplicationController
 
   # DELETE /patient_visits/1
   def destroy
+    @patient = @patient_visit.patient
     @patient_visit.destroy!
-    redirect_to patient_visits_url, notice: "Patient visit was successfully destroyed."
+    redirect_to patient_patient_visits_url(@patient), notice: "Patient visit was successfully destroyed."
   end
 
   private
