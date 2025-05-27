@@ -21,7 +21,7 @@ import Form from './Form.vue'
 const { patient_procedure_result, assignees, patient_procedure_id } = defineProps(['patient_procedure_result', 'assignees', 'patient_procedure_id'])
 
 const handleSubmit = (form) => {
-  form.transform((data) => ({ patient_procedure_result: data, images: data.images }))
+  form.transform((data) => ({ patient_procedure_result: data }))
   form.post(`/patient_procedures/${patient_procedure_id}/patient_procedure_results`, {
     forceFormData: true,
   })

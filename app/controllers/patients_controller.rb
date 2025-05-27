@@ -84,7 +84,7 @@ class PatientsController < ApplicationController
 
     def serialize_patient(patient)
       patient.as_json(only: [
-        :id, :first_name, :middle_names, :last_name, :dob, :address, :email, :phone, :lab_branch_id, :emergency_contact
+        :id, :first_name, :middle_names, :last_name, :dob, :address, :email, :phone, :lab_branch_id, emergency_contact: {}
       ])
     end
 end
