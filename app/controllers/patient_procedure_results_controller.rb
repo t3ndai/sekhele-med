@@ -47,10 +47,12 @@ class PatientProcedureResultsController < ApplicationController
   # POST /patient_procedure_results
   def create
     @patient_procedure_result = PatientProcedureResult.new(patient_procedure_result_params)
-    # patient_procedure_result_params[:patient_procedure_result][:images].each do |image|
-    # @patient_procedure_result.images.attach(image)
-    # end
-    @patient_procedure_result.images = params[:images]
+
+    images = params[:patient_procedure_result][:images].values
+    images.each do |image|
+      @patient_procedure_result.images.attach(image)
+    end
+
     @patient_procedure_result.patient_procedure = @patient_procedure
 
     if @patient_procedure_result.save
@@ -88,7 +90,7 @@ class PatientProcedureResultsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def patient_procedure_result_params
-      params.require(:patient_procedure_result).permit(:notes, :lab_branch_user_id, :patient_procedure_id, images: [])
+      params.expect(patient_procedure_result: [ :notes, :lab_branch_user_id, :patient_procedure_id, images: [] ])
     end
 
     def serialize_patient_procedure_result(patient_procedure_result)

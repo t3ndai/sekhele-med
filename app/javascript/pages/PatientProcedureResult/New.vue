@@ -22,6 +22,8 @@ const { patient_procedure_result, assignees, patient_procedure_id } = defineProp
 
 const handleSubmit = (form) => {
   form.transform((data) => ({ patient_procedure_result: data, images: data.images }))
-  form.post(`/patient_procedures/${patient_procedure_id}/patient_procedure_results`)
+  form.post(`/patient_procedures/${patient_procedure_id}/patient_procedure_results`, {
+    forceFormData: true,
+  })
 }
 </script>

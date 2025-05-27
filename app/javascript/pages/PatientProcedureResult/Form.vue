@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="emit('onSubmit', form)" class="contents">
+  <form @submit.prevent="emit('onSubmit', form)" enctype="multipart/form-data" class="contents">
     <div class="my-5">
       <label for="note">Notes</label>
       <textarea name="note" id="note" v-model="form.notes" rows="4"
@@ -11,7 +11,7 @@
 
     <div class="my-5">
       <label for="image">Images</label>
-      <input type="file" name="image[]" id="image" @input="form.images = $event.target.files[0]"
+      <input type="file" name="image[]" multiple id="image" @input="form.images = $event.target.files"
         class="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" />
       <div v-if="form.errors.images" :class="$style.error">
         {{ form.errors.images.join(', ') }}
