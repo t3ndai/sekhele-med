@@ -13,6 +13,13 @@
       <PatientVisit :patient_visit="patient_visit" />
 
       <div class="flex justify-between items-center">
+        <Link :href="`/patient_visits/${patient_visit.id}/patient_visit_billings/new`"
+          class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
+        Bill Patient
+        </Link>
+      </div>
+
+      <div class="flex justify-between items-center">
         <h1 class="font-bold text-4xl">Patient procedures</h1>
         <Link :href="`/patient_visits/${patient_visit.id}/patient_procedures/new`"
           class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">

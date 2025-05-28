@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :procedures
     resources :patients do
       resources :patient_visits do
+        resources :patient_visit_billings
         resources :patient_procedures do
           resources :patient_procedure_results
         end

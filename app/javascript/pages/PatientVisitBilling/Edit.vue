@@ -1,0 +1,40 @@
+<template>
+  <Head title="Editing patient visit billing" />
+
+  <div className="mx-auto md:w-2/3 w-full px-8 pt-8">
+    <h1 class="font-bold text-4xl">Editing patient visit billing</h1>
+
+    <Form
+      :patient_visit_billing="patient_visit_billing"
+      submitText="Update Patient visit billing"
+      @onSubmit="handleSubmit"
+    />
+
+    <Link
+      :href="`/patient_visit_billings/${patient_visit_billing.id}`"
+      class="mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+    >
+      Show this patient visit billing
+    </Link>
+    <Link
+      href="/patient_visit_billings"
+      class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+    >
+      Back to patient visit billings
+    </Link>
+  </div>
+</template>
+
+<script setup>
+import { Head, Link } from '@inertiajs/vue3'
+import Form from './Form.vue'
+
+const { patient_visit_billing } = defineProps(['patient_visit_billing'])
+
+const handleSubmit = (form) => {
+  form.transform((data) => ({ patient_visit_billing: data }))
+  form.post(`/patient_visit_billings/${patient_visit_billing.id}`, {
+    headers: { 'X-HTTP-METHOD-OVERRIDE': 'put' },
+  })
+}
+</script>

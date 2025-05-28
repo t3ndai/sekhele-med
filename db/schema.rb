@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_23_165222) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_28_200236) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -111,6 +111,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_165222) do
     t.index ["procedure_id"], name: "index_patient_procedures_on_procedure_id"
   end
 
+  create_table "patient_visit_billings", force: :cascade do |t|
+    t.decimal "amount_due"
+    t.decimal "amount_paid"
+    t.string "status"
+    t.string "payment_method"
+    t.integer "patient_visit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_visit_id"], name: "index_patient_visit_billings_on_patient_visit_id"
+  end
+
   create_table "patient_visits", force: :cascade do |t|
     t.integer "patient_id", null: false
     t.integer "referrer_id"
@@ -201,6 +212,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_165222) do
   add_foreign_key "patient_procedures", "lab_branch_users"
   add_foreign_key "patient_procedures", "patient_visits"
   add_foreign_key "patient_procedures", "procedures"
+  add_foreign_key "patient_visit_billings", "patient_visits"
   add_foreign_key "patient_visits", "patients"
   add_foreign_key "patient_visits", "referrers"
   add_foreign_key "patients", "lab_branches"

@@ -67,3 +67,6 @@ gem "authentication-zero", "~> 4.0"
 gem "pwned"
 
 gem "vite_rails", "~> 3.0"
+
+# Use Active Storage validations
+gem "active_storage_validations"
