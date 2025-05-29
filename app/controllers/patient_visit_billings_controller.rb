@@ -28,8 +28,14 @@ class PatientVisitBillingsController < ApplicationController
     @patient_visit_billing.amount_due = @patient_visit.procedures.sum(:cost)
     @patient_visit_billing.amount_paid = 0
 
+    payment_methods = PatientVisitBilling.payment_methods.keys.map do |method|
+      { value: method, label: method.humanize }
+    end
+
     render inertia: "PatientVisitBilling/New", props: {
-      patient_visit_billing: serialize_patient_visit_billing(@patient_visit_billing)
+      patient_visit_billing: serialize_patient_visit_billing(@patient_visit_billing),
+      payment_methods:,
+      patient_visit_id: @patient_visit.id
     }
   end
 
@@ -43,9 +49,15 @@ class PatientVisitBillingsController < ApplicationController
   # POST /patient_visit_billings
   def create
     @patient_visit_billing = PatientVisitBilling.new(patient_visit_billing_params)
+    @patient_visit_billing.patient_visit = @patient_visit
+    images = params[:patient_visit_billing][:proof].values
+    images.each do |image|
+      @patient_visit_billing.proof.attach(image)
+    end
+    @patient_visit_billing.status = "paid" if @patient_visit_billing.proof.attached?
 
     if @patient_visit_billing.save
-      redirect_to @patient_visit_billing, notice: "Patient visit billing was successfully created."
+      redirect_to @patient_visit_billing, notice: "Patient billed successfully."
     else
       redirect_to new_patient_visit_billing_url, inertia: { errors: @patient_visit_billing.errors }
     end
@@ -62,8 +74,9 @@ class PatientVisitBillingsController < ApplicationController
 
   # DELETE /patient_visit_billings/1
   def destroy
+    @patient_visit = @patient_visit_billing.patient_visit
     @patient_visit_billing.destroy!
-    redirect_to patient_visit_billings_url, notice: "Patient visit billing was successfully destroyed."
+    redirect_to @patient_visit, notice: "Patient visit billing was successfully destroyed."
   end
 
   private
