@@ -18,7 +18,7 @@
         <div class="flex flex-col mt-4">
             <div class="flex justify-between items-center">
                 <h1 class="font-bold text-4xl">Branches</h1>
-                <Link :href="`/lab_admin/labs/${lab_id}/lab_branches/new`"
+                <Link href="/lab_admin/lab_branches/new"
                     class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
                 New Branch
                 </Link>

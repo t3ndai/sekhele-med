@@ -8,10 +8,14 @@
     </p>
 
     <div class="flex justify-between items-center">
-      <h1 class="font-bold text-4xl">Lab branch users</h1>
+      <h1 class="font-bold text-4xl">{{ branch_name }} Staff</h1>
+      <Link :href="`/lab_admin/lab_branches/${lab_branch_id}/`"
+        class="rounded-lg py-3 px-5 bg-slate-600 text-white block font-medium">
+      Back to Branch
+      </Link>
       <Link :href="`/lab_admin/lab_branches/${lab_branch_id}/lab_branch_users/new`"
         class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
-      New Branch User
+      New Staff
       </Link>
     </div>
 
@@ -38,5 +42,5 @@ import LabBranchUser from './LabBranchUser.vue'
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 
-const { lab_branch_users, flash, lab_branch_id } = defineProps(['lab_branch_users', 'flash', 'lab_branch_id'])
+const { lab_branch_users, flash, lab_branch_id, branch_name } = defineProps(['lab_branch_users', 'flash', 'lab_branch_id', 'branch_name'])
 </script>

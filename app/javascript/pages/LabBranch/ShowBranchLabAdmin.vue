@@ -8,19 +8,24 @@
         {{ flash.notice }}
       </p>
 
-      <h1 class="font-bold text-4xl">Branch: {{ lab_branch.name }}</h1>
+      <div class="flex justify-between items-center">
+        <h1 class="font-bold text-4xl">Branch: {{ lab_branch.name }}</h1>
+        <Link href="/lab_admin" class="rounded-lg py-3 px-5 bg-gray-600 text-white block font-medium">
+        Back to Dashboard
+        </Link>
+      </div>
 
       <LabBranch :lab_branch="lab_branch" />
 
       <div class="flex justify-between items-center">
-        <h1 class="font-bold text-4xl">Lab branch users</h1>
+        <h1 class="font-bold text-4xl">Branch Staff</h1>
         <Link :href="`/lab_admin/lab_branches/${lab_branch.id}/lab_branch_users/new`"
           class="rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium">
-        New User
+        New Staff
         </Link>
         <Link :href="`/lab_admin/lab_branches/${lab_branch.id}/lab_branch_users/`"
           class="rounded-lg py-3 px-5 bg-gray-600 text-white block font-medium">
-        View Users
+        View Staff
         </Link>
       </div>
 
@@ -34,7 +39,7 @@
         </Link>
 
         <div class="inline-block ml-2">
-          <Link :href="`/lab_branches/${lab_branch.id}`" as="button" method="delete"
+          <Link :href="`/lab_admin/lab_branches/${lab_branch.id}`" as="button" method="delete"
             class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">
           Destroy this branch
           </Link>

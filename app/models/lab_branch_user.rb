@@ -19,7 +19,7 @@ class LabBranchUser < ApplicationRecord
   end
 
   def org_name
-    lab_branch.lab.trading_name
+    lab_branch&.lab&.trading_name
   end
 
   scope :medical_staff, -> { where(role_type: :medical) }

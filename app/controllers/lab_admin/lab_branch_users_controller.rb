@@ -11,7 +11,8 @@ class LabAdmin::LabBranchUsersController < ApplicationController
       lab_branch_users: @lab_branch_users.map do |lab_branch_user|
         serialize_lab_branch_user(lab_branch_user)
       end,
-      lab_branch_id: @lab_branch.id
+      lab_branch_id: @lab_branch.id,
+      branch_name: @lab_branch.name
     }
   end
 

@@ -2,7 +2,6 @@ class LabBranch < ApplicationRecord
   belongs_to :lab
   has_many :referrers, dependent: :destroy
   has_many :procedures, dependent: :destroy
-  has_many :lab_users, dependent: :destroy
   has_many :patients, dependent: :destroy
   has_many :patient_visits, through: :patients
   has_many :patient_visit_billings, through: :patient_visits

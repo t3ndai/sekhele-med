@@ -43,7 +43,7 @@ class LabAdmin::LabBranchesController < ApplicationController
     @lab_branch.lab = @lab
 
     if @lab_branch.save
-      redirect_to lab_admin_lab_lab_branch_url(@lab, @lab_branch), notice: "Lab branch was successfully created."
+      redirect_to lab_admin_lab_branch_url(@lab_branch), notice: "Branch was successfully created."
     else
       redirect_to new_lab_branch_url, inertia: { errors: @lab_branch.errors }
     end
@@ -52,7 +52,7 @@ class LabAdmin::LabBranchesController < ApplicationController
   # PATCH/PUT /lab_branches/1
   def update
     if @lab_branch.update(lab_branch_params)
-      redirect_to lab_admin_lab_lab_branch_url(@lab, @lab_branch), notice: "Lab branch was successfully updated."
+      redirect_to lab_admin_lab_lab_branch_url(@lab, @lab_branch), notice: "Branch was successfully updated."
     else
       redirect_to edit_lab_branch_url(@lab_branch), inertia: { errors: @lab_branch.errors }
     end
@@ -61,7 +61,7 @@ class LabAdmin::LabBranchesController < ApplicationController
   # DELETE /lab_branches/1
   def destroy
     @lab_branch.destroy!
-    redirect_to lab_branches_url, notice: "Lab branch was successfully destroyed."
+    redirect_to lab_admin_url, notice: "Branch was successfully destroyed."
   end
 
   private
@@ -71,7 +71,7 @@ class LabAdmin::LabBranchesController < ApplicationController
     end
 
     def set_lab
-      @lab = Lab.find(params[:lab_id])
+      @lab = Current.user.lab_user.lab
     end
 
     # Only allow a list of trusted parameters through.
