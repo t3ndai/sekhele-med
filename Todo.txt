@@ -3,3 +3,7 @@
 
 Local LabAdmin 
     - sandy@mails.com 
+
+Chivhu branch 
+    - front desk: yxi@mails.com 
+    - medical: lxi@mails.com

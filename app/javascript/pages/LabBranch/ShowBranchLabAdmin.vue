@@ -34,8 +34,8 @@
           class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
         Edit this branch
         </Link>
-        <Link href="/lab_branches" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-        Back to branches
+        <Link href="/lab_admin" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
+        Back to Admin Dashboard
         </Link>
 
         <div class="inline-block ml-2">

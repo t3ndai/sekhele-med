@@ -37,6 +37,25 @@
                 </DataTable>
             </div>
         </div>
+
+        <div class="flex flex-col mt-8">
+            <div class="flex justify-between items-center">
+                <h1 class="font-bold text-4xl">Referrers</h1>
+            </div>
+            <div>
+                <DataTable :value="referrers" responsiveLayout="scroll">
+                    <Column field="name" header="Name"></Column>
+                    <Column field="this_month" header="This Month Referrals"></Column>
+                    <Column field="all_time" header="All Time Refferals"></Column>
+                    <Column field="actions" header="Actions">
+                        <template #body="slotProps">
+                            <Link :href="`/lab_admin/lab_users/${slotProps.data.id}`"
+                                class="rounded-lg py-3 px-5 bg-gray-400 text-white block font-medium">View</Link>
+                        </template>
+                    </Column>
+                </DataTable>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -52,6 +71,10 @@ defineProps({
         required: true
     },
     branches: {
+        type: Array,
+        required: true
+    },
+    referrers: {
         type: Array,
         required: true
     }
