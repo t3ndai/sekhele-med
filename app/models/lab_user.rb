@@ -7,4 +7,8 @@ class LabUser < ApplicationRecord
   validates :name, :username, length: { minimum: 2 }, uniqueness: { scope: :lab_id }
 
   after_create ->(lab_user) { lab_user.create_user(email: email, password: SecureRandom.base58, verified: true, role: :admin) }
+
+  def org_name
+    lab.trading_name
+  end
 end

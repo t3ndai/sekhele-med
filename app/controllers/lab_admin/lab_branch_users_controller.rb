@@ -6,11 +6,12 @@ class LabAdmin::LabBranchUsersController < ApplicationController
 
   # GET /lab_branch_users
   def index
-    @lab_branch_users = LabBranchUser.all
+    @lab_branch_users = @lab_branch.lab_branch_users
     render inertia: "LabBranchUser/Index", props: {
       lab_branch_users: @lab_branch_users.map do |lab_branch_user|
         serialize_lab_branch_user(lab_branch_user)
-      end
+      end,
+      lab_branch_id: @lab_branch.id
     }
   end
 
@@ -42,7 +43,13 @@ class LabAdmin::LabBranchUsersController < ApplicationController
     @lab_branch_user = LabBranchUser.new(lab_branch_user_params)
     @lab_branch_user.lab_branch = @lab_branch
 
+    docs = params[:lab_branch_user][:documents].values
+    docs.each do |doc|
+      @lab_branch_user.documents.attach(doc)
+    end
+
     if @lab_branch_user.save
+      send_invitation(@lab_branch_user)
       redirect_to lab_admin_lab_branch_user_url(@lab_branch_user), notice: "Lab branch user was successfully created."
     else
       redirect_to new_lab_branch_user_url, inertia: { errors: @lab_branch_user.errors }
@@ -60,8 +67,9 @@ class LabAdmin::LabBranchUsersController < ApplicationController
 
   # DELETE /lab_branch_users/1
   def destroy
+    @lab_branch = @lab_branch_user.lab_branch
     @lab_branch_user.destroy!
-    redirect_to lab_branch_users_url, notice: "Lab branch user was successfully destroyed."
+    redirect_to lab_admin_lab_branch_lab_branch_users_url(@lab_branch), notice: "Lab branch user was successfully destroyed."
   end
 
   private
@@ -79,9 +87,13 @@ class LabAdmin::LabBranchUsersController < ApplicationController
       params.require(:lab_branch_user).permit(:lab_branch_id, :first_name, :middle_names, :last_names, :role_type, :phone, :email, :address, documents: [])
     end
 
+    def send_invitation(lab_user)
+      UserMailer.invite_to_org(lab_user).deliver_later
+    end
+
     def serialize_lab_branch_user(lab_branch_user)
       lab_branch_user.as_json(only: [
-        :id, :lab_branch_id, :first_name, :middle_names, :last_names, :role_type, :phone, :email, :address
+        :id, :lab_branch_id, :first_name, :middle_names, :last_names, :role_type, :phone, :email, :address, :name
       ]).tap do |hash|
         hash["documents"] =
           lab_branch_user.documents.flat_map do |file|

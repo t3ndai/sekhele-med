@@ -1,10 +1,6 @@
 <template>
   <div>
     <p class="my-5">
-      <strong class="block font-medium mb-1">Lab branch:</strong>
-      {{ lab_branch_user.lab_branch_id }}
-    </p>
-    <p class="my-5">
       <strong class="block font-medium mb-1">First name:</strong>
       {{ lab_branch_user.first_name }}
     </p>

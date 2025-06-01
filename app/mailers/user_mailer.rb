@@ -29,7 +29,7 @@ class UserMailer < ApplicationMailer
 
   def invite_to_org(lab_user)
     @name = lab_user.name
-    @lab = lab_user.lab.trading_name
+    @lab = lab_user.org_name
     @signed_id = lab_user.user.generate_token_for(:password_reset)
 
     mail to: lab_user.user.email, subject: "Invitation to join #{@lab}"
