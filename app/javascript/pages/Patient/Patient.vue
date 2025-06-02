@@ -28,10 +28,6 @@
       <strong class="block font-medium mb-1">Phone:</strong>
       {{ patient.phone }}
     </p>
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Lab branch:</strong>
-      {{ patient.lab_branch_id }}
-    </p>
     <div class="my-5">
       <strong class="block font-medium mb-1">Emergency contact:</strong>
       <p v-for="(v, k) in patient.emergency_contact" :key="k" class="flex gap-x-2">

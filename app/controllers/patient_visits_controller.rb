@@ -19,7 +19,9 @@ class PatientVisitsController < ApplicationController
     render inertia: "PatientVisit/Show", props: {
       patient_visit: serialize_patient_visit(@patient_visit),
       patient: @patient_visit.patient.full_name,
-      referrer: @patient_visit.referrer.name
+      referrer: @patient_visit.referrer.name,
+      patient_url: patient_url(@patient_visit.patient),
+      patient_visit_billing_url: patient_visit_billing_url(@patient_visit.patient_visit_billing)
     }
   end
 

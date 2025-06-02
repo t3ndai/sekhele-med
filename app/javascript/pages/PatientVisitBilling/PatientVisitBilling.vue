@@ -22,10 +22,6 @@
       <strong class="block font-medium mb-1">Payment method:</strong>
       {{ patient_visit_billing.payment_method }}
     </p>
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Patient visit:</strong>
-      {{ patient_visit_billing.patient_visit_id }}
-    </p>
   </div>
 </template>
 

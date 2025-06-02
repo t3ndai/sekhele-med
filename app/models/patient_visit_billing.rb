@@ -37,4 +37,13 @@ class PatientVisitBilling < ApplicationRecord
       errors.add(:amount_paid, "cannot exceed the amount due")
     end
   end
+
+  def as_json(options = {})
+    super(options).merge(
+      patient_visit: {
+        patient: patient_visit.patient.full_name,
+        visit_on: patient_visit.created_at.strftime("%d-%m-%Y")
+      }
+    )
+  end
 end

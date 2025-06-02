@@ -41,4 +41,21 @@ class Patient < ApplicationRecord
   def full_name
     "#{first_name} #{middle_names} #{last_name}"
   end
+
+  def as_json(options = {})
+    super(options).merge(
+      full_name: full_name,
+      dob: dob.strftime("%d-%m-%Y"),
+      patient_visits: patient_visits.map do |visit|
+        {
+          id: visit.id,
+          visit_time: visit.visit_time.strftime("%H:%M"),
+          visit_on: visit.created_at.strftime("%d-%m-%Y"),
+          visit_type: visit.visit_type,
+          is_billed: visit.is_billed?,
+          referrer: visit.referrer&.name
+        }
+      end
+    )
+  end
 end

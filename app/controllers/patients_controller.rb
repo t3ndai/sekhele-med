@@ -17,7 +17,8 @@ class PatientsController < ApplicationController
   # GET /patients/1
   def show
     render inertia: "Patient/Show", props: {
-      patient: serialize_patient(@patient)
+      patient: serialize_patient(@patient),
+      patients_url: lab_branch_patients_url(@patient.lab_branch)
     }
   end
 

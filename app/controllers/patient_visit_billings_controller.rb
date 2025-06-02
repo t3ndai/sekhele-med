@@ -17,7 +17,8 @@ class PatientVisitBillingsController < ApplicationController
   # GET /patient_visit_billings/1
   def show
     render inertia: "PatientVisitBilling/Show", props: {
-      patient_visit_billing: serialize_patient_visit_billing(@patient_visit_billing)
+      patient_visit_billing: serialize_patient_visit_billing(@patient_visit_billing),
+      patient_visit_url: patient_visit_url(@patient_visit_billing.patient_visit)
     }
   end
 
@@ -35,7 +36,8 @@ class PatientVisitBillingsController < ApplicationController
     render inertia: "PatientVisitBilling/New", props: {
       patient_visit_billing: serialize_patient_visit_billing(@patient_visit_billing),
       payment_methods:,
-      patient_visit_id: @patient_visit.id
+      patient_visit_id: @patient_visit.id,
+      patient_visit_url: patient_visit_url(@patient_visit_billing.patient_visit)
     }
   end
 
