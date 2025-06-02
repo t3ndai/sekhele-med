@@ -17,7 +17,9 @@ class PatientVisitsController < ApplicationController
   # GET /patient_visits/1
   def show
     render inertia: "PatientVisit/Show", props: {
-      patient_visit: serialize_patient_visit(@patient_visit)
+      patient_visit: serialize_patient_visit(@patient_visit),
+      patient: @patient_visit.patient.full_name,
+      referrer: @patient_visit.referrer.name
     }
   end
 
@@ -31,7 +33,8 @@ class PatientVisitsController < ApplicationController
     render inertia: "PatientVisit/New", props: {
       patient_visit: serialize_patient_visit(@patient_visit),
       referrers:,
-      patient_id: @patient.id
+      patient_id: @patient.id,
+      lab_branch_patients_url: lab_branch_patients_url(@patient.lab_branch)
     }
   end
 
@@ -46,6 +49,11 @@ class PatientVisitsController < ApplicationController
   def create
     @patient_visit = PatientVisit.new(patient_visit_params)
     @patient_visit.patient = @patient
+
+    docs = params[:patient_visit][:docs].values
+    docs.each do |doc|
+      @patient_visit.docs.attach(doc)
+    end
 
     if @patient_visit.save
       redirect_to @patient_visit, notice: "Patient visit was successfully created."

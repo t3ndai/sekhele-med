@@ -19,7 +19,9 @@ class PatientProceduresController < ApplicationController
     render inertia: "PatientProcedure/Show", props: {
       patient_procedure: serialize_patient_procedure(@patient_procedure),
       assignee: @patient_procedure.lab_branch_user.name,
-      procedure: @patient_procedure.procedure.name
+      procedure: @patient_procedure.procedure.name,
+      patient: @patient_procedure.patient_visit.patient.full_name,
+      patient_visit_url: patient_visit_url(@patient_procedure.patient_visit)
     }
   end
 
@@ -42,7 +44,8 @@ class PatientProceduresController < ApplicationController
       patient_procedure: serialize_patient_procedure(@patient_procedure),
       patient_visit_id: @patient_visit.id,
       procedures:,
-      assignees:
+      assignees:,
+      patient_visit_url: patient_visit_url(@patient_visit)
     }
   end
 

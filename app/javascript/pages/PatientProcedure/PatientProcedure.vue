@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex justify-between items-center">
     <p class="my-5">
       <strong class="block font-medium mb-1">Procedure:</strong>
       {{ procedure }}

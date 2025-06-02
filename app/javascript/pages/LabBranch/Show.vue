@@ -8,9 +8,7 @@
         {{ flash.notice }}
       </p>
 
-      <h1 class="font-bold text-4xl">Lab branch #{{ lab_branch.id }}</h1>
-
-      <LabBranch :lab_branch="lab_branch" />
+      <h1 class="font-bold text-4xl">Branch {{ lab_branch.name }}</h1>
 
       <div class="flex justify-between items-center my-2">
         <div class="flex justify-between items-center">
@@ -79,20 +77,6 @@
           </template>
         </div>
 
-        <Link :href="`/lab_branches/${lab_branch.id}/edit`"
-          class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-        Edit this lab branch
-        </Link>
-        <Link href="/lab_branches" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-        Back to lab branches
-        </Link>
-
-        <div class="inline-block ml-2">
-          <Link :href="`/lab_branches/${lab_branch.id}`" as="button" method="delete"
-            class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">
-          Destroy this lab branch
-          </Link>
-        </div>
       </div>
     </div>
   </div>

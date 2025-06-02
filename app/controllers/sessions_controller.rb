@@ -17,6 +17,8 @@ class SessionsController < ApplicationController
 
       if user.admin?
         redirect_to lab_admin_url, notice: "Signed in successfully"
+      elsif user.lab_branch_user.front_office?
+        redirect_to lab_branch_url(user.lab_branch_user.lab_branch), notice: "Signed in successfully"
       else
         redirect_to root_path, notice: "Signed in successfully"
       end

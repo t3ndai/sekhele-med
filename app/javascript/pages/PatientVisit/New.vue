@@ -7,8 +7,8 @@
 
     <Form :patient_visit="patient_visit" :referrers submitText="Create Patient visit" @onSubmit="handleSubmit" />
 
-    <Link href="/patient_visits" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-    Back to patient visits
+    <Link :href="`${lab_branch_patients_url}`" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
+    Back to Patients
     </Link>
   </div>
 </template>
@@ -17,7 +17,7 @@
 import { Head, Link } from '@inertiajs/vue3'
 import Form from './Form.vue'
 
-const { patient_visit, referrers, patient_id } = defineProps(['patient_visit', 'referrers', 'patient_id'])
+const { patient_visit, referrers, patient_id, lab_branch_patients_url } = defineProps(['patient_visit', 'referrers', 'patient_id', 'lab_branch_patients_url'])
 
 const handleSubmit = (form) => {
   form.transform((data) => ({ patient_visit: data }))

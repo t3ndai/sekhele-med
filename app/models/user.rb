@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                 :integer          not null, primary key
+#  email              :string           not null
+#  password_digest    :string           not null
+#  role               :string           default("user"), not null
+#  verified           :boolean          default(FALSE), not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  lab_branch_user_id :integer
+#  lab_user_id        :integer
+#
+# Indexes
+#
+#  index_users_on_email               (email) UNIQUE
+#  index_users_on_lab_branch_user_id  (lab_branch_user_id)
+#  index_users_on_lab_user_id         (lab_user_id)
+#
+# Foreign Keys
+#
+#  lab_branch_user_id  (lab_branch_user_id => lab_branch_users.id)
+#  lab_user_id         (lab_user_id => lab_users.id)
+#
 class User < ApplicationRecord
   has_secure_password
 
@@ -12,6 +37,8 @@ class User < ApplicationRecord
   end
 
   belongs_to :lab_user, optional: true
+  belongs_to :lab_branch_user, optional: true
+  has_one :lab_branch, through: :lab_branch_user
 
   has_many :sessions, dependent: :destroy
   has_many :sign_in_tokens, dependent: :destroy

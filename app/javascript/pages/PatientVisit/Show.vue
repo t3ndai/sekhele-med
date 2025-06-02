@@ -8,9 +8,9 @@
         {{ flash.notice }}
       </p>
 
-      <h1 class="font-bold text-4xl">Patient visit #{{ patient_visit.id }}</h1>
+      <h1 class="font-bold text-4xl">{{ patient }}-{{ patient_visit.visit_on }} Visit</h1>
 
-      <PatientVisit :patient_visit="patient_visit" />
+      <PatientVisit :patient_visit="patient_visit" :referrer />
 
       <div class="flex justify-between items-center">
         <Link :href="`/patient_visits/${patient_visit.id}/patient_visit_billings/new`"
@@ -27,19 +27,21 @@
         </Link>
       </div>
 
-      <Link :href="`/patient_visits/${patient_visit.id}/edit`"
-        class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-      Edit this patient visit
-      </Link>
-      <Link href="/patient_visits" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-      Back to patient visits
-      </Link>
-
-      <div class="inline-block ml-2">
-        <Link :href="`/patient_visits/${patient_visit.id}`" as="button" method="delete"
-          class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">
-        Destroy this patient visit
+      <div class="flex mt-8 justify-between items-center">
+        <Link :href="`/patient_visits/${patient_visit.id}/edit`"
+          class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
+        Edit this patient visit
         </Link>
+        <Link href="/patient_visits" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
+        Back to patient visits
+        </Link>
+
+        <div class="inline-block ml-2">
+          <Link :href="`/patient_visits/${patient_visit.id}`" as="button" method="delete"
+            class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">
+          Destroy this patient visit
+          </Link>
+        </div>
       </div>
     </div>
   </div>
@@ -49,5 +51,5 @@
 import { Head, Link } from '@inertiajs/vue3'
 import PatientVisit from './PatientVisit.vue'
 
-const { patient_visit, flash } = defineProps(['patient_visit', 'flash'])
+const { patient_visit, flash, patient, referrer } = defineProps(['patient_visit', 'flash', 'patient', 'referrer'])
 </script>

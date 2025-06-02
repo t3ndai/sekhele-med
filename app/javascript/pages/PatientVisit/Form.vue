@@ -7,12 +7,12 @@
 
         <div>
           <input type="radio" id="referral" name="Referral" value="referral" v-model="form.visit_type" />
-          <label for="referral">Referral</label>
+          <label for="referral">Referral (Known Referrer)</label>
         </div>
 
         <div>
           <input type="radio" id="walk_in" name="walk_in" value="walk_in" v-model="form.visit_type" />
-          <label for="walk_in">Walk In</label>
+          <label for="walk_in">Walk In (New Referrer)</label>
         </div>
       </fieldset>
       <div v-if="form.errors.visit_type" :class="$style.error">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="my-5" v-if="form.visit_type === 'referral'">
+    <div class="my-5">
       <label for="referrer">Referrer</label>
       <Select :options="referrers" optionValue="id" optionLabel="name" name="referrer" id="referrer"
         v-model="form.referrer_id"

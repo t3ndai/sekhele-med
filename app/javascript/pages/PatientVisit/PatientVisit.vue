@@ -1,12 +1,8 @@
 <template>
   <div>
     <p class="my-5">
-      <strong class="block font-medium mb-1">Patient:</strong>
-      {{ patient_visit.patient_id }}
-    </p>
-    <p class="my-5">
       <strong class="block font-medium mb-1">Referrer:</strong>
-      {{ patient_visit.referrer_id }}
+      {{ referrer }}
     </p>
     <p class="my-5">
       <strong class="block font-medium mb-1">Visit type:</strong>
@@ -44,5 +40,5 @@
 </template>
 
 <script setup>
-const { patient_visit } = defineProps(['patient_visit'])
+const { patient_visit, referrer } = defineProps(['patient_visit', 'referrer'])
 </script>

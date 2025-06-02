@@ -8,7 +8,7 @@
         {{ flash.notice }}
       </p>
 
-      <h1 class="font-bold text-4xl">Patient procedure #{{ patient_procedure.id }}</h1>
+      <h1 class="font-bold text-4xl">Patient procedure: {{ patient }}-{{ procedure }}</h1>
 
       <PatientProcedure :patient_procedure="patient_procedure" :procedure :assignee />
 
@@ -20,19 +20,22 @@
         </Link>
       </div>
 
-      <Link :href="`/patient_procedures/${patient_procedure.id}/edit`"
-        class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-      Edit this patient procedure
-      </Link>
-      <Link href="/patient_procedures" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-      Back to patient procedures
-      </Link>
-
-      <div class="inline-block ml-2">
-        <Link :href="`/patient_procedures/${patient_procedure.id}`" as="button" method="delete"
-          class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">
-        Destroy this patient procedure
+      <div class="flex mt-8 justify-between items-center">
+        <Link :href="`/patient_procedures/${patient_procedure.id}/edit`"
+          class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
+        Edit this patient procedure
         </Link>
+
+        <Link :href="`${patient_visit_url}`" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
+        Back to Patient Visit
+        </Link>
+
+        <div class="inline-block ml-2">
+          <Link :href="`/patient_procedures/${patient_procedure.id}`" as="button" method="delete"
+            class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">
+          Destroy this patient procedure
+          </Link>
+        </div>
       </div>
     </div>
   </div>
@@ -42,5 +45,5 @@
 import { Head, Link } from '@inertiajs/vue3'
 import PatientProcedure from './PatientProcedure.vue'
 
-const { patient_procedure, flash, assignee, procedure } = defineProps(['patient_procedure', 'flash', 'assignee', 'procedure'])
+const { patient_procedure, flash, assignee, procedure, patient, patient_visit_url } = defineProps(['patient_procedure', 'flash', 'assignee', 'procedure', 'patient', 'patient_visit_url'])
 </script>
