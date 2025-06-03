@@ -19,7 +19,8 @@ class LabAdmin::LabBranchUsersController < ApplicationController
   # GET /lab_branch_users/1
   def show
     render inertia: "LabBranchUser/Show", props: {
-      lab_branch_user: serialize_lab_branch_user(@lab_branch_user)
+      lab_branch_user: serialize_lab_branch_user(@lab_branch_user),
+      lab_admin_lab_branch_url: lab_admin_lab_branch_url(@lab_branch_user.lab_branch)
     }
   end
 

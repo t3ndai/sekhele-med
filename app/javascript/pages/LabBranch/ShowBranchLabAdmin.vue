@@ -15,7 +15,18 @@
         </Link>
       </div>
 
-      <LabBranch :lab_branch="lab_branch" />
+      <div class="flex mt-8 gap-x-6">
+        <div class="rounded bg-green-200 px-8 py-4">
+          <div class="text-2xl font-bold">{{ lab_branch.today_visits }}</div>
+          <div class="text-gray-500">Today Visits</div>
+        </div>
+
+        <div class="rounded bg-green-200 px-8 py-4">
+          <div class="text-2xl font-bold">${{ lab_branch.today_receipts }}</div>
+          <div class="text-gray-500">Today Receipts</div>
+        </div>
+      </div>
+
 
       <div class="flex justify-between items-center">
         <h1 class="font-bold text-4xl">Branch Staff</h1>

@@ -17,8 +17,9 @@
           class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
         Edit this branch user
         </Link>
-        <Link href="/lab_branch_users" class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
-        Back to branch users
+        <Link :href="`${lab_admin_lab_branch_url}`"
+          class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
+        Back to branch
         </Link>
 
         <div class="inline-block ml-2">
@@ -36,5 +37,5 @@
 import { Head, Link } from '@inertiajs/vue3'
 import LabBranchUser from './LabBranchUser.vue'
 
-const { lab_branch_user, flash } = defineProps(['lab_branch_user', 'flash'])
+const { lab_branch_user, flash, lab_admin_lab_branch_url } = defineProps(['lab_branch_user', 'flash', 'lab_admin_lab_branch_url'])
 </script>
