@@ -29,16 +29,13 @@ class LabBranch < ApplicationRecord
 
   scope :today_visits, -> { joins(:patient_visits).where(patient_visits: { created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day }).count }
 
-  scope :today_receipts, -> { joins(:patient_visits)
-    .where(patient_visits: { created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day })
-    .joins(:patient_visit_billings)
-    .sum("patient_visit_billings.amount_paid") }
-
-  def today_receipts
-    self.class.today_receipts
+  def today_visits
+    patient_visits.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).count
   end
 
-  def today_visits
-    self.class.today_visits
+  def today_receipts
+    patient_visits.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+    .joins(:patient_visit_billing)
+    .sum("patient_visit_billing.amount_paid")
   end
 end

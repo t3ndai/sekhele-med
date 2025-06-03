@@ -21,7 +21,7 @@ class PatientVisitsController < ApplicationController
       patient: @patient_visit.patient.full_name,
       referrer: @patient_visit.referrer.name,
       patient_url: patient_url(@patient_visit.patient),
-      patient_visit_billing_url: patient_visit_billing_url(@patient_visit.patient_visit_billing)
+      patient_visit_billing_url: (patient_visit_billing_url(@patient_visit.patient_visit_billing) if @patient_visit.patient_visit_billing)
     }
   end
 
