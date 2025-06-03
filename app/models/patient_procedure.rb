@@ -30,8 +30,8 @@ class PatientProcedure < ApplicationRecord
 
   def as_json(options = {})
     super(options).merge(
-      procedure_at: procedure_at.strftime("%H:%M"),
-      procedure_on: procedure_on.strftime("%d-%m-%Y"),
+      procedure_at: procedure_at&.strftime("%H:%M"),
+      procedure_on: procedure_on&.strftime("%d-%m-%Y"),
     )
   end
 end

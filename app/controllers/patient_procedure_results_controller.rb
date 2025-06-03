@@ -33,7 +33,8 @@ class PatientProcedureResultsController < ApplicationController
     render inertia: "PatientProcedureResult/New", props: {
       patient_procedure_result: serialize_patient_procedure_result(@patient_procedure_result),
       assignees:,
-      patient_procedure_id: @patient_procedure.id
+      patient_procedure_id: @patient_procedure.id,
+      patient_procedure_url: patient_procedure_url(@patient_procedure)
     }
   end
 

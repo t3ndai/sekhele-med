@@ -52,9 +52,11 @@ class PatientVisitsController < ApplicationController
     @patient_visit = PatientVisit.new(patient_visit_params)
     @patient_visit.patient = @patient
 
-    docs = params[:patient_visit][:docs].values
-    docs.each do |doc|
-      @patient_visit.docs.attach(doc)
+    if params[:patient_visit][:docs]
+      docs = params[:patient_visit][:docs].values
+      docs.each do |doc|
+        @patient_visit.docs.attach(doc)
+      end
     end
 
     if @patient_visit.save

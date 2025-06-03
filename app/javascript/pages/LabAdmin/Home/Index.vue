@@ -49,7 +49,7 @@
                     <Column field="all_time" header="All Time Refferals"></Column>
                     <Column field="actions" header="Actions">
                         <template #body="slotProps">
-                            <Link :href="`/lab_admin/lab_users/${slotProps.data.id}`"
+                            <Link :href="`/referrers/${slotProps.data.id}`"
                                 class="rounded-lg py-3 px-5 bg-gray-400 text-white block font-medium">View</Link>
                         </template>
                     </Column>

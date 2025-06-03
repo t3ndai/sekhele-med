@@ -2,7 +2,7 @@
 
   <Head :title="`Lab branch #${lab_branch.id}`" />
 
-  <div className="mx-auto md:w-2/3 w-full px-8 pt-8">
+  <div className="w-full px-8 pt-8">
     <div class="mx-auto">
       <p v-if="flash.notice" class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block">
         {{ flash.notice }}
@@ -29,7 +29,17 @@
         </Link>
       </div>
 
-      <div>
+      <div class="mt-8">
+        <h1 class="font-bold text-4xl">Procedure Stats: Today</h1>
+        <DataTable :value="lab_branch.procedures_stats" responsiveLayout="scroll">
+          <Column field="name" header="Procedure"></Column>
+          <Column field="count" header="Count"></Column>
+          <Column field="billed_amount" header="Billed"></Column>
+          <Column field="paid_amount" header="Paid"></Column>
+        </DataTable>
+      </div>
+
+      <div class="flex mt-8 justify-between items-center">
         <Link :href="`/lab_branches/${lab_branch.id}/edit`"
           class="ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">
         Edit this branch

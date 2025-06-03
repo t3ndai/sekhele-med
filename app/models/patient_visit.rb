@@ -43,8 +43,8 @@ class PatientVisit < ApplicationRecord
 
   def as_json(options = {})
     super(options).merge(
-      visit_time: visit_time.strftime("%H:%M"),
-      visit_on: created_at.strftime("%d-%m-%Y"),
+      visit_time: visit_time&.strftime("%H:%M"),
+      visit_on: created_at&.strftime("%d-%m-%Y"),
       patient_procedures: patient_procedures.map do |patient_procedure|
         {
           id: patient_procedure.id,

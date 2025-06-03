@@ -8,3 +8,14 @@ Local LabAdmin
 Chivhu branch 
     - front desk: yxi@mails.com 
     - medical: lxi@mails.com
+
+
+Requirements:
+    1.radiologist reporting
+    - Reports completed 
+    - Average reporting time 
+    - Backlog/ aging reports 
+    2.Financial overview
+    - Revenue by examination /branch
+    - Outstanding payments/claims
+    - Cash vs medical aid mix( how much generated from cash customers and how much medical aid etc)
