@@ -73,3 +73,10 @@ gem "vite_rails", "~> 3.0"
 gem "active_storage_validations"
 
 gem "pundit", "~> 2.5"
+
+# Mailjet
+gem "mailjet"
+
+# s3 - object storage
+gem "aws-sdk-s3", "1.170", require: false
+gem "aws-sdk-core", "3.211"

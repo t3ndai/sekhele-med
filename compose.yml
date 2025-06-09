@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8932:3000"
+    volumes:
+      - .:/app
+    environment:
+      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
