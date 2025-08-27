@@ -79,4 +79,4 @@ gem "mailjet"
 
 # s3 - object storage
 gem "aws-sdk-s3", "1.170", require: false
-gem "aws-sdk-core", "3.211"
+gem "aws-sdk-core", "3.231.0"
